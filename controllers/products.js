@@ -13,7 +13,7 @@ exports.getAddProduct = (req, res, next) => {
     });
 };
 
-exports.postAddProduct = (req, res) => {
+exports.postAddProduct = (req, res, next) => {
     //console.log(req.body);
     //products.push({ title: req.body.title });
     const product = new Product(req.body.title);
@@ -24,13 +24,15 @@ exports.postAddProduct = (req, res) => {
 exports.getProducts = (req, res, next) => {
     //console.log(adminData.products);
     //res.sendFile(path.join(__dirname, '../views', 'shop.html'));
-    const products = Product.fetchAll();
-    res.render('shop', {
-        prods: products,
-        pageTitle: "Shop",
-        path: '/',
-        hasProducts: products.length > 0,
-        activeShop: true,
-        productCSS: true
+    Product.fetchAll(products => {
+        res.render('shop', {
+            prods: products,
+            pageTitle: "Shop",
+            path: '/',
+            hasProducts: products.length > 0,
+            activeShop: true,
+            productCSS: true
+        });
     });
+
 };
