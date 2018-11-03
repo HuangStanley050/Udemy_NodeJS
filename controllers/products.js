@@ -18,7 +18,8 @@ exports.postAddProduct = (req, res, next) => {
     //products.push({ title: req.body.title });
     const product = new Product(req.body.title);
     product.save();
-    res.redirect('/');
+    console.log('redirecting...');
+    res.redirect('https://webdevbootcamp-infamousgodhand.c9users.io/');
 };
 
 exports.getProducts = (req, res, next) => {
