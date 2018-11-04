@@ -7,9 +7,11 @@ const getProductsFromFile = (cb) => {
 
     fs.readFile(p, (err, fileContent) => {
         if (err) {
-            return cb([]);
+            cb([]);
         }
-        cb(JSON.parse(fileContent));
+        else {
+            cb(JSON.parse(fileContent));
+        }
     });
 };
 
@@ -23,11 +25,7 @@ module.exports = class Product {
         getProductsFromFile(products => {
             products.push(this);
             fs.writeFile(p, JSON.stringify(products), err => {
-                if (err) {
-                    console.log(err);
-                }
-
-
+                console.log(err);
             });
         });
 
